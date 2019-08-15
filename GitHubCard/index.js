@@ -5,8 +5,10 @@
 axios
    .get("https://api.github.com/users/BPitts8019")
    .then(response => {
-      console.log(response);
-      console.log(buildUserCard(response.data));
+      const userCards = buildUserCard(response.data);
+      console.log(userCards);
+
+      document.querySelector(".cards").appendChild(userCards);
    });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -64,7 +66,7 @@ const buildUserCard = userData => {
    //create elements
    const card = buildElement("div", null, "card");
    const children = [
-      buildElement("img", userData.avatar_url),
+      buildElement("img", null, null, userData.avatar_url),
       buildCardInfo(userData)
    ];
 
@@ -75,33 +77,21 @@ const buildUserCard = userData => {
    return card;
 };
 const buildCardInfo = userData => {
-   /*
-   <div class="card-info">
-      <h3 class="name">{users name}</h3>
-      <p class="username">{users user name}</p>
-      <p>Location: {users location}</p>
-      <p>Profile:  
-         <a href={address to users github page}>{address to users github page}</a>
-      </p>
-      <p>Followers: {users followers count}</p>
-      <p>Following: {users following count}</p>
-      <p>Bio: {users bio}</p>
-   </div>
-   */
    //create elements
    const cardInfo = buildElement("div", null, "card-info");
    const children = [
       buildElement("h3", userData.name, "name"),
-      buildElement("p",  userData.login, "userName"),
+      buildElement("p", userData.login, "userName"),
       buildElement("p", `Location: ${userData.location}`),
       buildProfile(userData.html_url),
       buildElement("p", `Followers: ${userData.followers}`),
       buildElement("p", `Following: ${userData.following}`),
-      buildElement("p", `Bio: ${(userData.bio)? userData.bio : ""}`),
+      buildElement(
+         "p", 
+         (userData.bio)? `Bio: ${userData.bio}` : "Wow! So much empty.", 
+         (!userData.bio)? "sarcastic" : ""
+      ),
    ];
-
-   //add properties
-   cardInfo.classList.add("card-info");
 
    //attach children
    cardInfo.append(...children);
@@ -110,14 +100,14 @@ const buildCardInfo = userData => {
    return cardInfo;
 };
 const buildProfile = (profileUrl) => {
-   // <p>Profile:
-   //   <a href={address to users github page}>{address to users github page}</a>
-   // </p>
+   //create elements
    const profile = buildElement("p", "Profile: ");
    const link = buildElement("a", profileUrl, null, profileUrl);
 
+   //attach children
    profile.appendChild(link);
 
+   //return completed component
    return profile;
 };
 const buildElement = (tagName, content = null, className = null, url = null) => {
