@@ -18,10 +18,10 @@ In this project we are going to be accessing the GitHub API and building a socia
 
 **Follow these steps to set up and work on your project:**
 
-* [ ] Create a forked copy of this project.
-* [ ] Add your project manager as collaborator on Github.
-* [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-* [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
+* [x] Create a forked copy of this project.
+* [x] Add your project manager as collaborator on Github.
+* [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+* [x] Create a new branch: git checkout -b `<firstName-lastName>`.
 * [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
 * [ ] Push commits: git push origin `<firstName-lastName>`.
 
@@ -33,20 +33,20 @@ In this project we are going to be accessing the GitHub API and building a socia
 
 ### Preprocessor Setup
 
-  * None. We have gone ahead and taken care of this step for you. Focus on the Javascript 😁.
+* [x] None. We have gone ahead and taken care of this step for you. Focus on the Javascript 😁.
 
 ### Part 1: Requesting Data from the GitHub API
-* Include the script element linking the `axios` library in your HTML. If you do not remember the code you can find it here: https://github.com/axios/axios
-* Follow the instructions found in the GitHubCard/index.js file to request data from the GitHub API.
+* [x] Include the script element linking the `axios` library in your HTML. If you do not remember the code you can find it here: https://github.com/axios/axios
+* [ ] Follow the instructions found in the GitHubCard/index.js file to request data from the GitHub API.
 
 ### Part 2: Create the component function
 
-* Once you are receiving data from the GitHub API, take some time to study the data and the information it is giving you. You will create the HTML template you see in the GitHubCard/index.js file and plugging in the dynamic data you are getting from the GitHub API.
+* [ ] Once you are receiving data from the GitHub API, take some time to study the data and the information it is giving you. You will create the HTML template you see in the GitHubCard/index.js file and plugging in the dynamic data you are getting from the GitHub API.
 * Once you complete the component, create a component based on your profile and add it to the DOM.
 
 ### Part 3: Your Friends
 
-* After you have successfully added your own card to the DOM, we will get a list of your followers and programmatically add cards for them as well. Follow the instructions in GitHubCard/index.js. 
+* [ ] After you have successfully added your own card to the DOM, we will get a list of your followers and programmatically add cards for them as well. Follow the instructions in GitHubCard/index.js. 
 
 ### Stretch Goals:
 
