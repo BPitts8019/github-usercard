@@ -2,7 +2,7 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-const getUserCard = userLogin => {
+const getUserCards = (userLogin, getFollowers = false) => {
    axios
       .get(`https://api.github.com/users/${userLogin}`)
       .then(response => {
@@ -10,13 +10,36 @@ const getUserCard = userLogin => {
          console.log(userCards);
 
          document.querySelector(".cards").appendChild(userCards);
+
+         if (getFollowers) {
+            return axios.get(`https://api.github.com/users/${userLogin}/followers`);
+         }
+
+         return null;
+      })
+      .then(response => {
+         if (response) {
+            let followers = response.data.map(follower => follower.login);
+            followers = followers.concat([
+               "thisshouldError",
+               "tetondan",
+               "dustinmyers",
+               "justsml",
+               "luishrd",
+               "bigknell"
+            ]);
+
+            followers.forEach(follower => {
+               getUserCards(follower);
+            });
+         }
       })
       .catch(error => {
          console.log(`There was a problem getting ${userLogin}'s user data from GitHub!`);
          console.log(error);
       });
 };
-getUserCard("BPitts8019");
+getUserCards("BPitts8019", true);
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -40,16 +63,16 @@ getUserCard("BPitts8019");
           user, and adding that card to the DOM.
 */
 
-const followersArray = [
-   "thisshouldError",
-   "cladams0203",
-   "tetondan",
-   "dustinmyers",
-   "justsml",
-   "luishrd",
-   "bigknell"
-];
-followersArray.forEach(getUserCard);
+// const followersArray = [
+//    "thisshouldError",
+//    "cladams0203",
+//    "tetondan",
+//    "dustinmyers",
+//    "justsml",
+//    "luishrd",
+//    "bigknell"
+// ];
+// followersArray.forEach(getUserCards);
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
